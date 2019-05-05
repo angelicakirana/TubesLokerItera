@@ -4,29 +4,37 @@
  * and open the template in the editor.
  */
 package tubeslokeritera;
-import java.util.Scanner;
+
+
+import java.sql.*;
 
 /**
  *
- * @author mahasiswa
+ * @author Lenovo
  */
 public class TubesLokerItera {
 
-    int id;
-    String pass;
-    
-    public static void main(String[] args) {
-    
-       TubesLokerItera x =  new TubesLokerItera();
-      
-        Scanner scan = new Scanner(System.in);
-        x.id=1;
-        for(int i=0; i<5; i++)
-        x.pass=scan.next();
-        
-        System.out.println("id: "+x.id + "\npass :" + x.pass);
-        x.id++;
-        
+    /**
+     * @param args the command line arguments
+     */
+    Connection konek ;
+public Connection getConnection (){
+    try {
+        konek= DriverManager.getConnection("jdbc:mysql://localhost:3306/tubeslokeritera","root",""); 
+    }catch (SQLException e){
+        System.out.println("Tidak dapat menyambung database");
     }
+    return konek;
+}
+    /**
+     * @param args the command line arguments
+     * @throws java.sql.SQLException
+     */
+    public static void main(String[] args) throws SQLException {
+        // TODO code application logic here
+        TubesLokerItera konek = new TubesLokerItera();
+        Connection konek1 = konek.getConnection();
+        Statement stat = konek1.createStatement();
     
+    }
 }
