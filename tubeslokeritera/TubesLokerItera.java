@@ -21,6 +21,7 @@ public class TubesLokerItera {
 
     public static void main(String[] args)  {
         // TODO code application logic here
+        new login().setVisible(true);
         
     
     }
