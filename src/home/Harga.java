@@ -5,6 +5,8 @@
  */
 package home;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author asus
@@ -115,7 +117,8 @@ public class Harga extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(498, 647));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -155,7 +158,8 @@ public class Harga extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Harga().setVisible(true);
+                Harga ha= new Harga();
+                ha.setVisible(true);
             }
         });
     }
