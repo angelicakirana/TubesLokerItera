@@ -5,23 +5,23 @@
  */
 package tubeslokeritera;
 
-import home.login;
+import home.Menu;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.*;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Lenovo
+ * @author asus
  */
 public class TubesLokerItera {
-
-
-    public static void main(String[] args)  {
+   
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
         // TODO code application logic here
-        new login().setVisible(true);
-    
+        new Menu().setVisible(true);
     }
 }
