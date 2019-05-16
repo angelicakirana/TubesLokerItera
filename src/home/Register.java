@@ -225,7 +225,24 @@ public class Register extends javax.swing.JFrame {
        String username = uname.getText();
        String password = String.valueOf(pwdd.getPassword());
        String repassword = String.valueOf(repass.getPassword());
-    
+       
+       if(nama_depan.equals("")){
+           JOptionPane.showMessageDialog(null, "Nama depan wajib diisi");
+       }else if(nama_belakang.equals("")){
+           JOptionPane.showMessageDialog(null, "Nama belkang wajib diisi");
+       }else if(email.equals("")){
+           JOptionPane.showMessageDialog(null, "Email wajib diisi");
+       }else if(alamat.equals("")){
+           JOptionPane.showMessageDialog(null, "Alamat wajib diisi");
+       }else if(telepon.equals("")){
+           JOptionPane.showMessageDialog(null, "Telepon wajib diisi");
+       }else if(username.equals("")){
+           JOptionPane.showMessageDialog(null, "Username wajib diisi");
+       }else if(password.equals("")){
+           JOptionPane.showMessageDialog(null, "Password wajib diisi");
+       }else if(!password.equals(repassword)){
+           JOptionPane.showMessageDialog(null, "Password tidak sama");
+       }else{
         PreparedStatement ps;
         String query = "INSERT INTO `register`(`nama_depan`, `nama_belakang`, `alamat`, `jenis_kelamin`, `email`, `telepon`, `username`, `password`) VALUES (?,?,?,?,?,?,?,?)";
         
@@ -252,6 +269,7 @@ public class Register extends javax.swing.JFrame {
         Home ho = new Home();
         ho.setVisible(true);
         dispose();
+        }
     }//GEN-LAST:event_daftar1ActionPerformed
 
     private void pwddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwddActionPerformed
