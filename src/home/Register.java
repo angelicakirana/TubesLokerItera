@@ -266,8 +266,8 @@ public class Register extends javax.swing.JFrame {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        Home ho = new Home();
-        ho.setVisible(true);
+        login log = new login();
+        log.setVisible(true);
         dispose();
         }
     }//GEN-LAST:event_daftar1ActionPerformed
