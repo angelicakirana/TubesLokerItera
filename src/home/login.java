@@ -147,10 +147,15 @@ public class login extends javax.swing.JFrame {
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         // TODO add your handling code here:
+        innama.setText("");
+        inpwd.setText("");
     }//GEN-LAST:event_resetActionPerformed
 
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
         // TODO add your handling code here:
+        Menu nu = new Menu();
+        nu.setVisible(true);
+        dispose();
     }//GEN-LAST:event_closeMouseClicked
 
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
