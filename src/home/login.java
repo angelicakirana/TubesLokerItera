@@ -41,8 +41,10 @@ public class login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         innama = new javax.swing.JTextField();
         inpwd = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        reset = new javax.swing.JButton();
+        close = new javax.swing.JLabel();
+        Login = new javax.swing.JButton();
+        bckutama = new javax.swing.JLabel();
 
         jLabel6.setText("jLabel6");
 
@@ -86,26 +88,47 @@ public class login extends javax.swing.JFrame {
         jLabel4.setText("Username");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
-        innama.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        innama.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         innama.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(innama, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 350, 50));
 
+        inpwd.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         inpwd.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(inpwd, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, 350, 50));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jButton1.setText("Login");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        reset.setBackground(new java.awt.Color(255, 255, 255));
+        reset.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        reset.setText("Reset");
+        reset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                resetActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, 110, 50));
+        jPanel1.add(reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, 110, 50));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Menu.jpg"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
+        close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/homefix.png"))); // NOI18N
+        close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeMouseClicked(evt);
+            }
+        });
+        jPanel1.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, -1, -1));
+
+        Login.setBackground(new java.awt.Color(255, 255, 255));
+        Login.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        Login.setText("Login");
+        Login.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, 110, 50));
+
+        bckutama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Menu.jpg"))); // NOI18N
+        jPanel1.add(bckutama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,9 +145,17 @@ public class login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         // TODO add your handling code here:
-        String sql = "select * from login where username=? and password=?";
+    }//GEN-LAST:event_resetActionPerformed
+
+    private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_closeMouseClicked
+
+    private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
+        // TODO add your handling code here:
+        String sql = "select * from register where username=? and password=?";
         try{
             pre= connect.prepareStatement(sql);
             pre.setString(1, innama.getText());
@@ -132,20 +163,18 @@ public class login extends javax.swing.JFrame {
             r=pre.executeQuery();
             if(r.next()){
                 JOptionPane.showMessageDialog(null, "Login Berhasil");
-                Home h = new Home();
-                h.setVisible(true);
+                Home hm = new Home();
+                hm.setVisible(true);
                 dispose();
             }else{
                 JOptionPane.showMessageDialog(null, "Username atau Password salah !");
-                login log = new login();
-                log.setVisible(true);
-                dispose();
-                
+                innama.setText("");
+                inpwd.setText("");
             }
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_LoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,15 +213,17 @@ public class login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Login;
+    private javax.swing.JLabel bckutama;
+    private javax.swing.JLabel close;
     private javax.swing.JTextField innama;
     private javax.swing.JPasswordField inpwd;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton reset;
     // End of variables declaration//GEN-END:variables
 }

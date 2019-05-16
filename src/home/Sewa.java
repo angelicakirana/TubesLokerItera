@@ -7,6 +7,7 @@ package home;
 import java.sql.*;
 import javax.swing.*;
 import tubeslokeritera.koneksi;
+import home.Sewa;
 /**
  *
  * @author asus
@@ -41,7 +42,8 @@ public class Sewa extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lokeritera = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        close = new javax.swing.JLabel();
+        bckutama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -112,8 +114,17 @@ public class Sewa extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/id.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/ambil.jpg"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/back.png"))); // NOI18N
+        close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeMouseClicked(evt);
+            }
+        });
+        jPanel1.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 50, -1));
+
+        bckutama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/ambil.jpg"))); // NOI18N
+        jPanel1.add(bckutama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,7 +150,7 @@ public class Sewa extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String sql = "select * from login where password=?";
+        String sql = "select * from register where password=? and password='+innama+'";
         try{
             pre= connect.prepareStatement(sql);
             pre.setString(1, String.valueOf(inpwd.getPassword()));
@@ -163,6 +174,13 @@ public class Sewa extends javax.swing.JFrame {
     private void jScrollPane1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jScrollPane1ComponentShown
         // TODO add your handling code here:
     }//GEN-LAST:event_jScrollPane1ComponentShown
+
+    private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
+        // TODO add your handling code here:
+        Home nu = new Home();
+        nu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_closeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -201,9 +219,10 @@ public class Sewa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bckutama;
+    private javax.swing.JLabel close;
     private javax.swing.JPasswordField inpwd;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

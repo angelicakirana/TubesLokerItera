@@ -27,13 +27,17 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         login = new javax.swing.JLabel();
         close = new javax.swing.JLabel();
         register = new javax.swing.JLabel();
         bckutama = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         slmdtng = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        home = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
+        jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -68,15 +72,18 @@ public class Menu extends javax.swing.JFrame {
 
         bckutama.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 255, 255));
-        jLabel1.setText("LOKER ITERA");
-
         slmdtng.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         slmdtng.setForeground(new java.awt.Color(255, 255, 255));
         slmdtng.setText("Selamat datang !");
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/pawel-czerwinski-1135350-unsplash.jpg"))); // NOI18N
+
+        home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/home.png"))); // NOI18N
+        home.setText("jLabel5");
+
+        jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 46)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 255, 255));
+        jLabel1.setText("LOKER ITERA");
 
         javax.swing.GroupLayout bckutamaLayout = new javax.swing.GroupLayout(bckutama);
         bckutama.setLayout(bckutamaLayout);
@@ -85,22 +92,28 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(bckutamaLayout.createSequentialGroup()
                 .addGroup(bckutamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bckutamaLayout.createSequentialGroup()
-                        .addContainerGap(32, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(29, 29, 29))
+                        .addContainerGap()
+                        .addComponent(home, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1))
                     .addGroup(bckutamaLayout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(slmdtng)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(102, 102, 102)
+                        .addComponent(slmdtng)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(27, 27, 27))
         );
         bckutamaLayout.setVerticalGroup(
             bckutamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bckutamaLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabel1)
-                .addGap(215, 215, 215)
+                .addGroup(bckutamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bckutamaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(home))
+                    .addGroup(bckutamaLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(236, 236, 236)
                 .addComponent(slmdtng)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(bckutamaLayout.createSequentialGroup()
@@ -171,7 +184,9 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bckutama;
     private javax.swing.JLabel close;
+    private javax.swing.JLabel home;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel login;
     private javax.swing.JLabel register;

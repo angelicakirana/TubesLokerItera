@@ -42,6 +42,7 @@ public class Ambil extends javax.swing.JFrame {
         lokeritera = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        close = new javax.swing.JLabel();
         bckutama = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -107,13 +108,22 @@ public class Ambil extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 480, 90));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 480, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/id.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/passwd.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, -1, -1));
+
+        close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/back.png"))); // NOI18N
+        close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeMouseClicked(evt);
+            }
+        });
+        jPanel1.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
 
         bckutama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/sewa (2).jpg"))); // NOI18N
         jPanel1.add(bckutama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -139,7 +149,7 @@ public class Ambil extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String sql = "select * from login where password=?";
+        String sql = "SELECT password FROM register where password=?";
         try{
             pre= connect.prepareStatement(sql);
             pre.setString(1, String.valueOf(inpwd.getPassword()));
@@ -150,13 +160,22 @@ public class Ambil extends javax.swing.JFrame {
                 h.setVisible(true);
                 dispose();
             }else{
-                JOptionPane.showMessageDialog(null, "Gagal, pwd salah");
+                JOptionPane.showMessageDialog(null, "Gagal, password salah");
+                Ambil am = new Ambil();
+                am.setVisible(true);                        
                 dispose();
             }
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
+        // TODO add your handling code here:
+        Home nu = new Home();
+        nu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_closeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -196,6 +215,7 @@ public class Ambil extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bckutama;
+    private javax.swing.JLabel close;
     private javax.swing.JPasswordField inpwd;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

@@ -4,12 +4,21 @@
  * and open the template in the editor.
  */
 package home;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
+import javax.swing.JOptionPane;
+import tubeslokeritera.koneksi;
 
 /**
  *
  * @author asus
  */
 public class Register extends javax.swing.JFrame {
+    Connection connect = koneksi.getKoneksi();
+    ResultSet r = null;
+    PreparedStatement p = null;
 
     /**
      * Creates new form Register
@@ -33,20 +42,23 @@ public class Register extends javax.swing.JFrame {
         nadep = new javax.swing.JLabel();
         almt = new javax.swing.JLabel();
         mail = new javax.swing.JLabel();
-        usname = new javax.swing.JLabel();
         nabel = new javax.swing.JLabel();
         jekel = new javax.swing.JLabel();
         phon = new javax.swing.JLabel();
         pass = new javax.swing.JLabel();
         namablkng = new javax.swing.JTextField();
         phone = new javax.swing.JTextField();
-        pwd = new javax.swing.JTextField();
         namadep = new javax.swing.JTextField();
-        alamat = new javax.swing.JTextField();
-        email = new javax.swing.JTextField();
+        alamatt = new javax.swing.JTextField();
+        emaill = new javax.swing.JTextField();
         uname = new javax.swing.JTextField();
         jenkel = new javax.swing.JComboBox<>();
-        daftar = new javax.swing.JButton();
+        usname1 = new javax.swing.JLabel();
+        daftar1 = new javax.swing.JButton();
+        pwdd = new javax.swing.JPasswordField();
+        repass = new javax.swing.JPasswordField();
+        close = new javax.swing.JLabel();
+        retype = new javax.swing.JLabel();
         bckutama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -91,11 +103,6 @@ public class Register extends javax.swing.JFrame {
         mail.setText("Email");
         register.add(mail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
 
-        usname.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        usname.setForeground(new java.awt.Color(255, 255, 255));
-        usname.setText("Username");
-        register.add(usname, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
-
         nabel.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         nabel.setForeground(new java.awt.Color(255, 255, 255));
         nabel.setText("Nama Belakang");
@@ -124,32 +131,23 @@ public class Register extends javax.swing.JFrame {
         phone.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         register.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 340, 240, 40));
 
-        pwd.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        pwd.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        pwd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pwdActionPerformed(evt);
-            }
-        });
-        register.add(pwd, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, 240, 40));
-
         namadep.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         namadep.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         register.add(namadep, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 240, 40));
 
-        alamat.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        alamat.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        register.add(alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 240, 40));
+        alamatt.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        alamatt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        register.add(alamatt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 240, 40));
 
-        email.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        email.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        register.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 240, 40));
+        emaill.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        emaill.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        register.add(emaill, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 240, 40));
 
         uname.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         uname.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         register.add(uname, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 240, 40));
 
-        jenkel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Perempuan", "Laki-laki" }));
+        jenkel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-laki", "Perempuan" }));
         jenkel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jenkelActionPerformed(evt);
@@ -157,15 +155,42 @@ public class Register extends javax.swing.JFrame {
         });
         register.add(jenkel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 270, 240, 40));
 
-        daftar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        daftar.setText("DAFTAR");
-        daftar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        daftar.addActionListener(new java.awt.event.ActionListener() {
+        usname1.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        usname1.setForeground(new java.awt.Color(255, 255, 255));
+        usname1.setText("Username");
+        register.add(usname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
+
+        daftar1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        daftar1.setText("DAFTAR");
+        daftar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        daftar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                daftarActionPerformed(evt);
+                daftar1ActionPerformed(evt);
             }
         });
-        register.add(daftar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 510, 140, 40));
+        register.add(daftar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 570, 140, 40));
+
+        pwdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pwddActionPerformed(evt);
+            }
+        });
+        register.add(pwdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, 240, 40));
+        register.add(repass, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 490, 240, 40));
+
+        close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/home.png"))); // NOI18N
+        close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeMouseClicked(evt);
+            }
+        });
+        register.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 10, -1, -1));
+
+        retype.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        retype.setForeground(new java.awt.Color(255, 255, 255));
+        retype.setText("Retype Password");
+        register.add(retype, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 500, -1, -1));
 
         bckutama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Menu.jpg"))); // NOI18N
         register.add(bckutama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -189,14 +214,56 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jenkelActionPerformed
 
-    private void pwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdActionPerformed
+    private void daftar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftar1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pwdActionPerformed
-
-    private void daftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftarActionPerformed
-        // TODO add your handling code here:
+       String nama_depan = namadep.getText();
+       String nama_belakang = namablkng.getText();
+       String email = emaill.getText();
+       String alamat = alamatt.getText();
+       String jenis_kelamin = jenkel.getActionCommand();
+       String telepon = phone.getText();
+       String username = uname.getText();
+       String password = String.valueOf(pwdd.getPassword());
+       String repassword = String.valueOf(repass.getPassword());
+    
+        PreparedStatement ps;
+        String query = "INSERT INTO `register`(`nama_depan`, `nama_belakang`, `alamat`, `jenis_kelamin`, `email`, `telepon`, `username`, `password`) VALUES (?,?,?,?,?,?,?,?)";
         
-    }//GEN-LAST:event_daftarActionPerformed
+        try {
+            ps = koneksi.getKoneksi().prepareStatement(query);
+            ps.setString(1, nama_depan);
+            ps.setString(2, nama_belakang);
+            ps.setString(3, alamat);
+            ps.setString(4, jenis_kelamin);
+            ps.setString(5, email);
+            ps.setString(6, telepon);
+            ps.setString(7, username);
+            ps.setString(8, password);
+            ps.setString(9, repassword);
+            
+            if(ps.executeUpdate()>0){
+                JOptionPane.showMessageDialog(null, "User baru ditambahkan");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Home ho = new Home();
+        ho.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_daftar1ActionPerformed
+
+    private void pwddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pwddActionPerformed
+
+    private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
+        // TODO add your handling code here:
+        Menu nu = new Menu();
+        nu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_closeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -234,12 +301,13 @@ public class Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField alamat;
+    private javax.swing.JTextField alamatt;
     private javax.swing.JLabel almt;
     private javax.swing.JPanel bcklocker;
     private javax.swing.JLabel bckutama;
-    private javax.swing.JButton daftar;
-    private javax.swing.JTextField email;
+    private javax.swing.JLabel close;
+    private javax.swing.JButton daftar1;
+    private javax.swing.JTextField emaill;
     private javax.swing.JLabel jekel;
     private javax.swing.JComboBox<String> jenkel;
     private javax.swing.JLabel lokeritera;
@@ -251,9 +319,11 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel pass;
     private javax.swing.JLabel phon;
     private javax.swing.JTextField phone;
-    private javax.swing.JTextField pwd;
+    private javax.swing.JPasswordField pwdd;
     private javax.swing.JPanel register;
+    private javax.swing.JPasswordField repass;
+    private javax.swing.JLabel retype;
     private javax.swing.JTextField uname;
-    private javax.swing.JLabel usname;
+    private javax.swing.JLabel usname1;
     // End of variables declaration//GEN-END:variables
 }
