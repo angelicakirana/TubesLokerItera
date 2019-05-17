@@ -219,7 +219,26 @@ public class Register extends javax.swing.JFrame {
        String username = uname.getText();
        String password = String.valueOf(pwdd.getPassword());
        
-        
+       if(nama_depan.equals ("")){
+           JOptionPane.showMessageDialog(null, "Nama depan wajib diisi");
+       } else if(nama_belakang.equals ("")){
+           JOptionPane.showMessageDialog(null, "Nama belakang wajib diisi");
+       } else if(email.equals ("")){
+           JOptionPane.showMessageDialog(null, "Email wajib diisi");
+       } else if(alamat.equals ("")){
+           JOptionPane.showMessageDialog(null, "Alamat wajib diisi");
+       } else if(jenis_kelamin.equals ("")){
+           JOptionPane.showMessageDialog(null, "Jenis Kelamin wajib diisi");
+       } else if(telepon.equals ("")){
+           JOptionPane.showMessageDialog(null, "No Telepon wajib diisi");
+       } else if(username.equals ("")){
+           JOptionPane.showMessageDialog(null, "Username wajib diisi");
+       } else if(password.equals ("")){
+           JOptionPane.showMessageDialog(null, "Password wajib diisi");
+       } 
+       else{
+           
+       
         String query = "INSERT INTO register (nama_depan, nama_belakang, alamat, jenis_kelamin, email, telepon, username, password) VALUES (?,?,?,?,?,?,?,?)";
         PreparedStatement ps = null;
         
@@ -243,11 +262,11 @@ public class Register extends javax.swing.JFrame {
             }
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Data tidak lengkap.");
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-       
+       }
     }//GEN-LAST:event_daftar1ActionPerformed
 
     private void pwddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwddActionPerformed

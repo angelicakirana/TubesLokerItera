@@ -45,6 +45,8 @@ public class Sewa extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         close = new javax.swing.JLabel();
         idarea = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         bckutama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -54,6 +56,11 @@ public class Sewa extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         inpwd.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inpwd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inpwdActionPerformed(evt);
+            }
+        });
         jPanel1.add(inpwd, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, 280, 40));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -89,7 +96,7 @@ public class Sewa extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(lokeritera)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,7 +106,7 @@ public class Sewa extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 480, 80));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 450, 80));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/id.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
@@ -111,9 +118,8 @@ public class Sewa extends javax.swing.JFrame {
                 closeMouseClicked(evt);
             }
         });
-        jPanel1.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 50, -1));
+        jPanel1.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 50, -1));
 
-        idarea.setText("Masukkan ID");
         idarea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idareaActionPerformed(evt);
@@ -121,8 +127,16 @@ public class Sewa extends javax.swing.JFrame {
         });
         jPanel1.add(idarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 270, 50));
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("MASUKKAN ID BERUPA ANGKA UNIK");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, -1, -1));
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("MASUKKAN PASSWORD UNTUK MENGAMBIL BARANG");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 450, -1, -1));
+
         bckutama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/ambil.jpg"))); // NOI18N
-        jPanel1.add(bckutama, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+        jPanel1.add(bckutama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,7 +149,7 @@ public class Sewa extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(618, 842));
+        setSize(new java.awt.Dimension(600, 652));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -185,6 +199,10 @@ public class Sewa extends javax.swing.JFrame {
         
     }//GEN-LAST:event_idareaActionPerformed
 
+    private void inpwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpwdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inpwdActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -229,8 +247,10 @@ public class Sewa extends javax.swing.JFrame {
     private javax.swing.JTextField idarea;
     private javax.swing.JPasswordField inpwd;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lokeritera;

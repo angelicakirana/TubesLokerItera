@@ -43,7 +43,6 @@ Connection connect = koneksi.getKoneksi();
         panelloker = new javax.swing.JPanel();
         namauser = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -69,22 +68,18 @@ Connection connect = koneksi.getKoneksi();
         jLabel2.setFont(new java.awt.Font("Bookman Old Style", 1, 48)); // NOI18N
         jLabel2.setText("LOKER ITERA");
 
-        jLabel1.setText("Selamat Datang,");
-
         javax.swing.GroupLayout panellokerLayout = new javax.swing.GroupLayout(panelloker);
         panelloker.setLayout(panellokerLayout);
         panellokerLayout.setHorizontalGroup(
             panellokerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panellokerLayout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(59, 59, 59))
-            .addGroup(panellokerLayout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(248, 248, 248)
                 .addComponent(namauser)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panellokerLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(60, 60, 60))
         );
         panellokerLayout.setVerticalGroup(
             panellokerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,13 +87,11 @@ Connection connect = koneksi.getKoneksi();
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panellokerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(namauser))
+                .addComponent(namauser)
                 .addContainerGap())
         );
 
-        jPanel1.add(panelloker, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 480, 90));
+        jPanel1.add(panelloker, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 450, 70));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -134,7 +127,7 @@ Connection connect = koneksi.getKoneksi();
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 220, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 220, -1));
 
         jPanel6.setBackground(new java.awt.Color(0, 0, 0));
         jPanel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -170,10 +163,10 @@ Connection connect = koneksi.getKoneksi();
                 .addGap(40, 40, 40))
         );
 
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, 200, -1));
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, 200, -1));
 
         bckutama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/max.jpg"))); // NOI18N
-        jPanel1.add(bckutama, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 670, 860));
+        jPanel1.add(bckutama, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 0, 630, 860));
 
         jPanel5.setBackground(new java.awt.Color(0, 0, 0));
         jPanel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -219,14 +212,14 @@ Connection connect = koneksi.getKoneksi();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setSize(new java.awt.Dimension(688, 907));
+        setSize(new java.awt.Dimension(614, 538));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -326,7 +319,6 @@ Connection connect = koneksi.getKoneksi();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bckutama;
     private javax.swing.JLabel close;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

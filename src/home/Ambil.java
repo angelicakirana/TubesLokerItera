@@ -68,11 +68,11 @@ public class Ambil extends javax.swing.JFrame {
 
         masukid.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         masukid.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel1.add(masukid, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 320, 40));
+        jPanel1.add(masukid, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 320, 40));
 
         inputpw.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         inputpw.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel1.add(inputpw, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 320, 40));
+        jPanel1.add(inputpw, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 320, 40));
 
         Ambilbutton.setBackground(new java.awt.Color(102, 255, 255));
         Ambilbutton.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
@@ -88,7 +88,7 @@ public class Ambil extends javax.swing.JFrame {
                 AmbilbuttonActionPerformed(evt);
             }
         });
-        jPanel1.add(Ambilbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 510, -1, -1));
+        jPanel1.add(Ambilbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 430, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -99,26 +99,26 @@ public class Ambil extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(lokeritera)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lokeritera)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 480, 90));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 400, 70));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/id.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/passwd.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, -1, -1));
 
         close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/back.png"))); // NOI18N
         close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -127,7 +127,7 @@ public class Ambil extends javax.swing.JFrame {
                 closeMouseClicked(evt);
             }
         });
-        jPanel1.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
+        jPanel1.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, -1, -1));
 
         bckutama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/sewa (2).jpg"))); // NOI18N
         jPanel1.add(bckutama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -143,7 +143,7 @@ public class Ambil extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(618, 881));
+        setSize(new java.awt.Dimension(600, 565));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
