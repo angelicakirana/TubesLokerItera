@@ -8,6 +8,7 @@ import java.sql.*;
 import javax.swing.*;
 import tubeslokeritera.koneksi;
 import home.Sewa;
+import java.util.Calendar;
 /**
  *
  * @author asus
@@ -24,6 +25,8 @@ public class Sewa extends javax.swing.JFrame {
         initComponents();
     }
 
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,8 +37,6 @@ public class Sewa extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         inpwd = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -43,6 +44,7 @@ public class Sewa extends javax.swing.JFrame {
         lokeritera = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         close = new javax.swing.JLabel();
+        idarea = new javax.swing.JTextField();
         bckutama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,18 +52,6 @@ public class Sewa extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jScrollPane1.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                jScrollPane1ComponentShown(evt);
-            }
-        });
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 280, 90));
 
         inpwd.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(inpwd, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, 280, 40));
@@ -123,8 +113,16 @@ public class Sewa extends javax.swing.JFrame {
         });
         jPanel1.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 50, -1));
 
+        idarea.setText("Masukkan ID");
+        idarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idareaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(idarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 270, 50));
+
         bckutama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/ambil.jpg"))); // NOI18N
-        jPanel1.add(bckutama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel1.add(bckutama, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,30 +148,30 @@ public class Sewa extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String sql = "select * from register where password=? and password='+innama+'";
+       
+          java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+          int id = Integer.parseInt(idarea.getText());
+        String sql = "INSERT INTO sewa (id, password, waktu_akses) VALUES (?,?,?)";
         try{
-            pre= connect.prepareStatement(sql);
-            pre.setString(1, String.valueOf(inpwd.getPassword()));
-            r=pre.executeQuery();
-            if(r.next()){
+            pre= koneksi.getKoneksi().prepareStatement(sql);
+            pre.setInt(1, id);
+            pre.setString(2, String.valueOf(inpwd.getPassword()));
+            pre.setDate(3, sqlDate);
+            
+           pre.execute();
                 JOptionPane.showMessageDialog(null, "Sewa Berhasil");
                 Home h = new Home();
                 h.setVisible(true);
                 dispose();
-            }else{
-                JOptionPane.showMessageDialog(null, "ID atau password salah");
+            
+        }catch(Exception ex){
+                JOptionPane.showMessageDialog(null, "ID Sudah Pernah Ada");
                 Sewa h = new Sewa();
                 h.setVisible(true);
                 dispose();
-            }
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, ex);
+              
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jScrollPane1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jScrollPane1ComponentShown
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jScrollPane1ComponentShown
 
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
         // TODO add your handling code here:
@@ -181,6 +179,11 @@ public class Sewa extends javax.swing.JFrame {
         nu.setVisible(true);
         dispose();
     }//GEN-LAST:event_closeMouseClicked
+
+    private void idareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idareaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_idareaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,6 +215,8 @@ public class Sewa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
+                
                 Sewa se= new Sewa();
                 se.setVisible(true);
             }
@@ -221,14 +226,13 @@ public class Sewa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bckutama;
     private javax.swing.JLabel close;
+    private javax.swing.JTextField idarea;
     private javax.swing.JPasswordField inpwd;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lokeritera;
     // End of variables declaration//GEN-END:variables
 }

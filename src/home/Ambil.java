@@ -5,6 +5,9 @@
  */
 package home;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import tubeslokeritera.koneksi;
 
@@ -16,7 +19,8 @@ public class Ambil extends javax.swing.JFrame {
     Connection connect = koneksi.getKoneksi();
     ResultSet r = null;
     PreparedStatement pre = null;
-
+    
+    
     /**
      * Creates new form Ambil
      */
@@ -35,9 +39,9 @@ public class Ambil extends javax.swing.JFrame {
 
         jPanel5 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        inpwd = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        masukid = new javax.swing.JTextField();
+        inputpw = new javax.swing.JPasswordField();
+        Ambilbutton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lokeritera = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -62,29 +66,29 @@ public class Ambil extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 320, 40));
+        masukid.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        masukid.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel1.add(masukid, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 320, 40));
 
-        inpwd.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        inpwd.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel1.add(inpwd, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 320, 40));
+        inputpw.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        inputpw.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel1.add(inputpw, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 320, 40));
 
-        jButton1.setBackground(new java.awt.Color(102, 255, 255));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
-        jButton1.setText("Ambil");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        Ambilbutton.setBackground(new java.awt.Color(102, 255, 255));
+        Ambilbutton.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
+        Ambilbutton.setText("Ambil");
+        Ambilbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Ambilbutton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                AmbilbuttonMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Ambilbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AmbilbuttonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 510, -1, -1));
+        jPanel1.add(Ambilbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 510, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -143,32 +147,94 @@ public class Ambil extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void AmbilbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AmbilbuttonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_AmbilbuttonMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AmbilbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmbilbuttonActionPerformed
         // TODO add your handling code here:
-        String sql = "SELECT password FROM register where password=?";
+        int id = Integer.parseInt(masukid.getText());
+        idkeharga i = new idkeharga(id);
+        
+        ArrayList<Integer> nums = new ArrayList<>();
+        String cari = "SELECT id from ambil";
         try{
-            pre= connect.prepareStatement(sql);
-            pre.setString(1, String.valueOf(inpwd.getPassword()));
-            r=pre.executeQuery();
+           
+    pre = koneksi.getKoneksi().prepareStatement(cari);
+            r = pre.executeQuery();
+
+            while(r.next()){
+                int num = r.getInt ("id");
+               
+                nums.add(num);
+            }   
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(Ambil.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+        
+        if(nums.contains(id)){
+            JOptionPane.showMessageDialog(null, "ID Sudah Expired.");
+        }
+        
+        /*
+        String cekambil ="SELECT * FROM ambil where id=?";
+        
+        try {
+            pre= koneksi.getKoneksi().prepareStatement(cekambil);
+            
+            pre.setInt(1, id);
+             r=pre.executeQuery();
+             
+             
             if(r.next()){
-                JOptionPane.showMessageDialog(null, "Berhasil");
-                Home h = new Home();
-                h.setVisible(true);
+                JOptionPane.showMessageDialog(null, "ID Sudah Expired.");
+                Home hm = new Home();
+                hm.setVisible(true);
                 dispose();
             }else{
-                JOptionPane.showMessageDialog(null, "Gagal, password salah");
-                Ambil am = new Ambil();
-                am.setVisible(true);                        
+        */
+                
+                String cekidpw = "SELECT * FROM sewa where id=? AND password=?";
+            r=null;
+        try {
+            pre= koneksi.getKoneksi().prepareStatement(cekidpw);
+   
+            pre.setInt(1, id);
+            pre.setString(2, String.valueOf(inputpw.getPassword()));
+            r=pre.executeQuery();
+             
+            if(r.next()){
+                java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+                String sql = "INSERT INTO ambil values(?,?,?)";
+                
+            pre= koneksi.getKoneksi().prepareStatement(sql);
+            pre.setInt(1, id);
+            pre.setDate(2,sqlDate);
+            int harga=5000;
+            
+            pre.setInt(3, harga);        
+            pre.execute();
+                 
+                JOptionPane.showMessageDialog(null, "Berhasil.");
+                Harga hg = new Harga();
+                hg.setVisible(true);
                 dispose();
+            
+                
             }
-        }catch(Exception ex){
+               
+            //}
+             
+        } catch (SQLException ex) {
+      JOptionPane.showMessageDialog(null, "Data Gagal Dimasukkan.");
             JOptionPane.showMessageDialog(null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+       
+        
+        
+    }//GEN-LAST:event_AmbilbuttonActionPerformed
 
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
         // TODO add your handling code here:
@@ -214,16 +280,16 @@ public class Ambil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Ambilbutton;
     private javax.swing.JLabel bckutama;
     private javax.swing.JLabel close;
-    private javax.swing.JPasswordField inpwd;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPasswordField inputpw;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lokeritera;
+    private javax.swing.JTextField masukid;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,19 +5,31 @@
  */
 package home;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import tubeslokeritera.koneksi;
+
 /**
  *
  * @author asus
  */
 public class Home extends javax.swing.JFrame {
+Connection connect = koneksi.getKoneksi();
+    ResultSet r = null;
+    PreparedStatement pre = null;
 
     /**
      * Creates new form Home
      */
+    
     public Home() {
         initComponents();
+        
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,46 +40,65 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        panelloker = new javax.swing.JPanel();
+        namauser = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        bckutama = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         close = new javax.swing.JLabel();
-        bckutama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        panelloker.setBackground(new java.awt.Color(255, 255, 255));
+        panelloker.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                panellokerComponentShown(evt);
+            }
+        });
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Bookman Old Style", 1, 48)); // NOI18N
         jLabel2.setText("LOKER ITERA");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+        jLabel1.setText("Selamat Datang,");
+
+        javax.swing.GroupLayout panellokerLayout = new javax.swing.GroupLayout(panelloker);
+        panelloker.setLayout(panellokerLayout);
+        panellokerLayout.setHorizontalGroup(
+            panellokerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panellokerLayout.createSequentialGroup()
+                .addContainerGap(95, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(59, 59, 59))
+            .addGroup(panellokerLayout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(namauser)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        panellokerLayout.setVerticalGroup(
+            panellokerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panellokerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panellokerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(namauser))
+                .addContainerGap())
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 480, 90));
+        jPanel1.add(panelloker, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 480, 90));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -141,6 +172,9 @@ public class Home extends javax.swing.JFrame {
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, 200, -1));
 
+        bckutama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/max.jpg"))); // NOI18N
+        jPanel1.add(bckutama, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 670, 860));
+
         jPanel5.setBackground(new java.awt.Color(0, 0, 0));
         jPanel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -180,9 +214,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPanel1.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 0, -1, -1));
-
-        bckutama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/max.jpg"))); // NOI18N
-        jPanel1.add(bckutama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 860));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -239,6 +270,24 @@ public class Home extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jLabel5MouseClicked
 
+    private void panellokerComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panellokerComponentShown
+        // TODO add your handling code here:
+        try{
+            String sql = "select nama_depan from regis where uname=?";
+            pre= koneksi.getKoneksi().prepareStatement(sql);
+            pre.setString(1, "angelica");
+            r = pre.executeQuery();
+            while(r.next()){
+                String nama = r.getString("nama_depan");
+
+                namauser.setText(nama);
+
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_panellokerComponentShown
+
     /**
      * @param args the command line arguments
      */
@@ -277,14 +326,16 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bckutama;
     private javax.swing.JLabel close;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel namauser;
+    private javax.swing.JPanel panelloker;
     // End of variables declaration//GEN-END:variables
 }

@@ -20,9 +20,9 @@ public class koneksi {
         if(koneksi==null){
             try{
                 String url;
-                url="jdbc:mysql://localhost:3306/tubeslokeritera";
+                url="jdbc:mysql://localhost:8889/tubeslokeritera";
                 String username="root";
-                String password="";
+                String password="root";
                 DriverManager.registerDriver(new com.mysql.jdbc.Driver());
                 koneksi = DriverManager.getConnection(url,username,password);
             }catch(SQLException e){

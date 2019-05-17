@@ -166,8 +166,11 @@ public class login extends javax.swing.JFrame {
             pre.setString(1, innama.getText());
             pre.setString(2, String.valueOf(inpwd.getPassword()));
             r=pre.executeQuery();
+            
             if(r.next()){
                 JOptionPane.showMessageDialog(null, "Login Berhasil");
+                
+                
                 Home hm = new Home();
                 hm.setVisible(true);
                 dispose();

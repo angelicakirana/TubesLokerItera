@@ -5,6 +5,8 @@
  */
 package home;
 
+import tubeslokeritera.koneksi;
+
 /**
  *
  * @author asus
@@ -99,9 +101,9 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(bckutamaLayout.createSequentialGroup()
                         .addGap(102, 102, 102)
                         .addComponent(slmdtng)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addGap(27, 27, 27))
+                .addGap(24, 24, 24))
         );
         bckutamaLayout.setVerticalGroup(
             bckutamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,10 +117,10 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(236, 236, 236)
                 .addComponent(slmdtng)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(bckutamaLayout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 5, Short.MAX_VALUE))
+                .addContainerGap(310, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bckutamaLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().add(bckutama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 660));

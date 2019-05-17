@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package home;
+import com.mysql.jdbc.integration.c3p0.MysqlConnectionTester;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,9 +57,7 @@ public class Register extends javax.swing.JFrame {
         usname1 = new javax.swing.JLabel();
         daftar1 = new javax.swing.JButton();
         pwdd = new javax.swing.JPasswordField();
-        repass = new javax.swing.JPasswordField();
         close = new javax.swing.JLabel();
-        retype = new javax.swing.JLabel();
         bckutama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -168,7 +167,7 @@ public class Register extends javax.swing.JFrame {
                 daftar1ActionPerformed(evt);
             }
         });
-        register.add(daftar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 570, 140, 40));
+        register.add(daftar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 490, 140, 40));
 
         pwdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,9 +175,8 @@ public class Register extends javax.swing.JFrame {
             }
         });
         register.add(pwdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, 240, 40));
-        register.add(repass, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 490, 240, 40));
 
-        close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/home.png"))); // NOI18N
+        close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/closee.png"))); // NOI18N
         close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -186,11 +184,6 @@ public class Register extends javax.swing.JFrame {
             }
         });
         register.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 10, -1, -1));
-
-        retype.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        retype.setForeground(new java.awt.Color(255, 255, 255));
-        retype.setText("Retype Password");
-        register.add(retype, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 500, -1, -1));
 
         bckutama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Menu.jpg"))); // NOI18N
         register.add(bckutama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -212,6 +205,7 @@ public class Register extends javax.swing.JFrame {
 
     private void jenkelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jenkelActionPerformed
         // TODO add your handling code here:
+      
     }//GEN-LAST:event_jenkelActionPerformed
 
     private void daftar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftar1ActionPerformed
@@ -220,31 +214,14 @@ public class Register extends javax.swing.JFrame {
        String nama_belakang = namablkng.getText();
        String email = emaill.getText();
        String alamat = alamatt.getText();
-       String jenis_kelamin = jenkel.getActionCommand();
+       String jenis_kelamin = jenkel.getSelectedItem().toString();
        String telepon = phone.getText();
        String username = uname.getText();
        String password = String.valueOf(pwdd.getPassword());
-       String repassword = String.valueOf(repass.getPassword());
        
-       if(nama_depan.equals("")){
-           JOptionPane.showMessageDialog(null, "Nama depan wajib diisi");
-       }else if(nama_belakang.equals("")){
-           JOptionPane.showMessageDialog(null, "Nama belkang wajib diisi");
-       }else if(email.equals("")){
-           JOptionPane.showMessageDialog(null, "Email wajib diisi");
-       }else if(alamat.equals("")){
-           JOptionPane.showMessageDialog(null, "Alamat wajib diisi");
-       }else if(telepon.equals("")){
-           JOptionPane.showMessageDialog(null, "Telepon wajib diisi");
-       }else if(username.equals("")){
-           JOptionPane.showMessageDialog(null, "Username wajib diisi");
-       }else if(password.equals("")){
-           JOptionPane.showMessageDialog(null, "Password wajib diisi");
-       }else if(!password.equals(repassword)){
-           JOptionPane.showMessageDialog(null, "Password tidak sama");
-       }else{
-        PreparedStatement ps;
-        String query = "INSERT INTO `register`(`nama_depan`, `nama_belakang`, `alamat`, `jenis_kelamin`, `email`, `telepon`, `username`, `password`) VALUES (?,?,?,?,?,?,?,?)";
+        
+        String query = "INSERT INTO register (nama_depan, nama_belakang, alamat, jenis_kelamin, email, telepon, username, password) VALUES (?,?,?,?,?,?,?,?)";
+        PreparedStatement ps = null;
         
         try {
             ps = koneksi.getKoneksi().prepareStatement(query);
@@ -255,21 +232,22 @@ public class Register extends javax.swing.JFrame {
             ps.setString(5, email);
             ps.setString(6, telepon);
             ps.setString(7, username);
-            ps.setString(8, password);
-            ps.setString(9, repassword);
+            ps.setString(8, password);  
+
             
             if(ps.executeUpdate()>0){
                 JOptionPane.showMessageDialog(null, "User baru ditambahkan");
+                 login log = new login();
+                log.setVisible(true);
+                dispose();
             }
             
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        login log = new login();
-        log.setVisible(true);
-        dispose();
-        }
+       
     }//GEN-LAST:event_daftar1ActionPerformed
 
     private void pwddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwddActionPerformed
@@ -339,8 +317,6 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JTextField phone;
     private javax.swing.JPasswordField pwdd;
     private javax.swing.JPanel register;
-    private javax.swing.JPasswordField repass;
-    private javax.swing.JLabel retype;
     private javax.swing.JTextField uname;
     private javax.swing.JLabel usname1;
     // End of variables declaration//GEN-END:variables
