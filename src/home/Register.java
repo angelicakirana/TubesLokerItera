@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package home;
-import com.mysql.jdbc.integration.c3p0.MysqlConnectionTester;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
